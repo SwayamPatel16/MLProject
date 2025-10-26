@@ -12,9 +12,9 @@ from src.components.model_trainer import ModelTrainer
 
 @dataclass #helps to create simple classes meant to hold data w/o having to manually write an __init__()
 class DataIngestionConfig: #It defines where data files will be stored 
-    train_data_path = str = os.path.join('artifacts',"train.csv")
-    test_data_path = str = os.path.join('artifacts',"test.csv")
-    raw_data_path = str = os.path.join('artifacts',"data.csv")
+    train_data_path :str = os.path.join('artifacts',"train.csv")
+    test_data_path :str = os.path.join('artifacts',"test.csv")
+    raw_data_path :str = os.path.join('artifacts',"data.csv")
 
 
 #It is used to autonmate the first step of ml project-> collecting,saving and preparing raw data for training
@@ -27,7 +27,7 @@ class DataIngestion: #Imagine this as a delivery worker who gets the address inf
         logging.info("Entered the data ingestion method or component")
 
         try:
-            df = pd.read_csv('notebook\data\stud.csv') #Reads the file
+            df = pd.read_csv('notebook/data/stud.csv') #Reads the file
             logging.info("Read the dataset as dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True) #extracts a folder called artifacts and if doesnt exists creates one
