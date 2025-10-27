@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Prediction</title>
+    <!-- The <form> tag was here, which is incorrect. It has been removed. -->
+    
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply the Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main content card -->
+    <div class="bg-white w-full max-w-3xl p-8 md:p-12 rounded-2xl shadow-xl">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Student Exam Performance Indicator</h1>
+            <p class="text-lg text-gray-600 mt-2">Student Exam Performance Prediction</p>
+        </header>
+
+        <!-- 
+          Prediction Form
+          FIX: This is the single, correct form tag.
+          - action: Now uses your Flask 'url_for' helper.
+          - method: Uses the correct "POST" (with a single '=').
+        -->
+        <form action="{{ url_for('predict_datapoint')}}" method="POST">
+            <!-- Grid layout for form fields -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+                
+                <!-- Gender -->
+                <div>
+                    <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                    <select id="gender" name="gender" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="" disabled selected>Select your Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <!-- Race or Ethnicity -->
+                <div>
+                    <label for="race_ethnicity" class="block text-sm font-medium text-gray-700">Race or Ethnicity</label>
+                    <select id="race_ethnicity" name="race_ethnicity" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="" disabled selected>Select Ethnicity</option>
+                        <option value="group A">Group A</option>
+                        <option value="group B">Group B</option>
+                        <option value="group C">Group C</option>
+                        <option value="group D">Group D</option>
+                        <option value="group E">Group E</option>
+                    </select>
+                </div>
+
+                <!-- Parental Level of Education -->
+                <div>
+                    <label for="parental_level_of_education" class="block text-sm font-medium text-gray-700">Parental Level of Education</label>
+                    <select id="parental_level_of_education" name="parental_level_of_education" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="" disabled selected>Select Parent Education</option>
+                        <option value="bachelor's degree">Bachelor's Degree</option>
+                        <option value="some college">Some College</option>
+                        <option value="master's degree">Master's Degree</option>
+                        <option value="associate's degree">Associate's Degree</option>
+                        <option value="high school">High School</option>
+                        <option value="some high school">Some High School</option>
+                    </select>
+                </div>
+
+                <!-- Lunch Type -->
+                <div>
+                    <label for="lunch" class="block text-sm font-medium text-gray-700">Lunch Type</label>
+                    <select id="lunch" name="lunch" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="" disabled selected>Select Lunch Type</option>
+                        <option value="standard">Standard</option>
+                        <option value="free/reduced">Free/Reduced</option>
+                    </select>
+                </div>
+
+                <!-- Test Preparation Course -->
+                <div>
+                    <label for="test_preparation_course" class="block text-sm font-medium text-gray-700">Test Preparation Course</label>
+                    <select id="test_preparation_course" name="test_preparation_course" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="" disabled selected>Select Test Course</option>
+                        <option value="none">None</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <!-- Writing Score -->
+                <div>
+                    <label for="writing_score" class="block text-sm font-medium text-gray-700">Writing Score out of 100</label>
+                    <input type="number" id="writing_score" name="writing_score" min="0" max="100" placeholder="e.g. 75" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+
+                <!-- Reading Score -->
+                <div class="md:col-span-2"> <!-- Make this span 2 columns on medium screens -->
+                    <label for="reading_score" class="block text-sm font-medium text-gray-700">Reading Score out of 100</label>
+                    <input type="number" id="reading_score" name="reading_score" min="0" max="100" placeholder="e.g. 80" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="md:col-span-2 mt-4">
+                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                        Predict your Maths Score
+                    </button>
+                </div>
+
+            </div>
+        </form> <!-- This is the correct closing tag for the form -->
+
+        <!-- Result Display Area -->
+        <div class="mt-10 text-center">
+            <h2 class="text-2xl font-semibold text-gray-800">
+                <!-- 
+                  This {{ results }} placeholder is for Flask to insert the 
+                  prediction result when it renders the page.
+                -->
+                THE prediction is <span class="font-bold text-indigo-600">{{ results }}</span>
+            </h2>
+        </div>
+
+    </div>
+    <!-- The stray, extra </form> tag was here and has been removed. -->
+</body>
+</html>
